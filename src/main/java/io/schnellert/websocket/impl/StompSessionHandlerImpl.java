@@ -1,8 +1,8 @@
-package io.schnellert.websocket;
+package io.schnellert.websocket.impl;
 
 import io.schnellert.websocket.data.WebSocketAfterConnectedData;
 import io.schnellert.websocket.data.WebSocketReceivedData;
-import io.schnellert.websocket.data.WebSocketException;
+import io.schnellert.websocket.data.WebSocketExceptionData;
 import java.lang.reflect.Type;
 import java.util.Objects;
 import lombok.NonNull;
@@ -50,24 +50,24 @@ public final class StompSessionHandlerImpl implements StompSessionHandler {
         
         if (this.webSocketHandlerImpl.getExceptionCallback() == null)
             return;
-        final WebSocketException webSocketException = new WebSocketException("EXCEPTION");
+        final WebSocketExceptionData webSocketExceptionData = new WebSocketExceptionData("EXCEPTION");
         
         if (session != null)
-            webSocketException.setSession(session);
+            webSocketExceptionData.setSession(session);
         
         if (command != null)
-            webSocketException.setCommand(command);
+            webSocketExceptionData.setCommand(command);
         
         if (headers != null)
-            webSocketException.setHeaders(headers);
+            webSocketExceptionData.setHeaders(headers);
         
         if (bytes.length > 0)
-            webSocketException.setBytes(bytes);
+            webSocketExceptionData.setBytes(bytes);
         
         if (throwable != null)
-            webSocketException.setThrowable(throwable);
+            webSocketExceptionData.setThrowable(throwable);
         
-        this.webSocketHandlerImpl.getExceptionCallback().accept(webSocketException);
+        this.webSocketHandlerImpl.getExceptionCallback().accept(webSocketExceptionData);
     }
     //</editor-fold>
 
@@ -77,15 +77,15 @@ public final class StompSessionHandlerImpl implements StompSessionHandler {
         
         if (this.webSocketHandlerImpl.getExceptionCallback() == null)
             return;
-        final WebSocketException webSocketException = new WebSocketException("TRANSPORT_ERROR");
+        final WebSocketExceptionData webSocketExceptionData = new WebSocketExceptionData("TRANSPORT_ERROR");
         
         if (session != null)
-            webSocketException.setSession(session);
+            webSocketExceptionData.setSession(session);
         
         if (throwable != null)
-            webSocketException.setThrowable(throwable);
+            webSocketExceptionData.setThrowable(throwable);
         
-        this.webSocketHandlerImpl.getExceptionCallback().accept(webSocketException);
+        this.webSocketHandlerImpl.getExceptionCallback().accept(webSocketExceptionData);
     }
     //</editor-fold>
 

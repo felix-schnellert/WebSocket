@@ -2,7 +2,7 @@ package io.schnellert.websocket;
 
 import io.schnellert.websocket.data.WebSocketAfterConnectedData;
 import io.schnellert.websocket.data.WebSocketReceivedData;
-import io.schnellert.websocket.data.WebSocketException;
+import io.schnellert.websocket.data.WebSocketExceptionData;
 import java.util.function.Consumer;
 import lombok.NonNull;
 import org.springframework.messaging.simp.stomp.StompFrameHandler;
@@ -36,7 +36,7 @@ public interface IWebSocketHandler {
 
     void onAfterConnected(@NonNull final Consumer<WebSocketAfterConnectedData> callback);
 
-    void onException(@NonNull final Consumer<WebSocketException> callback);
+    void onException(@NonNull final Consumer<WebSocketExceptionData> callback);
 
     void onReceived(@NonNull final Consumer<WebSocketReceivedData> callback);
 }

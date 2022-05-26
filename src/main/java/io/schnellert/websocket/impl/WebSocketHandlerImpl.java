@@ -1,11 +1,11 @@
-package io.schnellert.websocket;
+package io.schnellert.websocket.impl;
 
+import io.schnellert.websocket.IWebSocketHandler;
+import io.schnellert.websocket.impl.StompSessionHandlerImpl;
 import io.schnellert.websocket.data.WebSocketAfterConnectedData;
 import io.schnellert.websocket.data.WebSocketReceivedData;
-import io.schnellert.websocket.data.WebSocketException;
-import io.schnellert.websocket.data.exception.WebSocketSyntaxException;
+import io.schnellert.websocket.data.WebSocketExceptionData;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
@@ -36,7 +36,7 @@ public final class WebSocketHandlerImpl implements IWebSocketHandler {
     protected Consumer<WebSocketAfterConnectedData> afterConnectedDataCallback;
     
     @Getter
-    protected Consumer<WebSocketException> exceptionCallback;
+    protected Consumer<WebSocketExceptionData> exceptionCallback;
     
     @Getter
     protected Consumer<WebSocketReceivedData> receivedDataCallback;
@@ -44,12 +44,12 @@ public final class WebSocketHandlerImpl implements IWebSocketHandler {
     
     //<editor-fold defaultstate="collapsed" desc="WebSocketHandlerImpl">
     public WebSocketHandlerImpl(@NonNull final URI uri)
-            throws WebSocketSyntaxException {
+            throws Exception {
         
         Objects.requireNonNull(uri, "URI cannot be null");
         
         if (!(uri.getHost().startsWith("ws://"))) {
-            throw new WebSocketSyntaxException("URI does not start with ws://");
+            throw new Exception("URI does not start with ws://");
         }
         
         this.uri = uri;
@@ -60,17 +60,9 @@ public final class WebSocketHandlerImpl implements IWebSocketHandler {
     
     //<editor-fold defaultstate="collapsed" desc="WebSocketHandlerImpl">
     public WebSocketHandlerImpl(@NonNull final String endpoint)
-            throws URISyntaxException, WebSocketSyntaxException {
+            throws Exception{
         
-        Objects.requireNonNull(endpoint, "Endpoint cannot be null");
-        
-        if (!(endpoint.startsWith("ws://"))) {
-            throw new WebSocketSyntaxException("URI does not start with ws://");
-        }
-        
-        this.uri = new URI(endpoint);
-        
-        init();
+        this(new URI(endpoint));
     }
     //</editor-fold>
     
@@ -207,7 +199,7 @@ public final class WebSocketHandlerImpl implements IWebSocketHandler {
     
     //<editor-fold defaultstate="collapsed" desc="onException">
     @Override
-    public void onException(@NonNull final Consumer<WebSocketException> callback) {
+    public void onException(@NonNull final Consumer<WebSocketExceptionData> callback) {
         
         Objects.requireNonNull(callback, "Exception Callback cannot be null");
         

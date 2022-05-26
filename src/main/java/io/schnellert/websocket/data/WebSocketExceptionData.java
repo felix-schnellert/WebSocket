@@ -12,7 +12,7 @@ import org.springframework.messaging.simp.stomp.StompSession;
 
 @RequiredArgsConstructor
 @Getter @Setter
-public final class WebSocketException {
+public final class WebSocketExceptionData {
     
     private final String type;
     
