@@ -1,4 +1,6 @@
-package io.schnellert.websocket.data.exception;
+package io.schnellert.websocket.data;
+
+
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

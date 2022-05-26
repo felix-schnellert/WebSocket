@@ -2,7 +2,7 @@ package io.schnellert.websocket;
 
 import io.schnellert.websocket.data.WebSocketAfterConnectedData;
 import io.schnellert.websocket.data.WebSocketReceivedData;
-import io.schnellert.websocket.data.exception.WebSocketException;
+import io.schnellert.websocket.data.WebSocketException;
 import java.lang.reflect.Type;
 import java.util.Objects;
 import lombok.NonNull;

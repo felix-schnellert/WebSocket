@@ -2,7 +2,7 @@ package io.schnellert.websocket;
 
 import io.schnellert.websocket.data.WebSocketAfterConnectedData;
 import io.schnellert.websocket.data.WebSocketReceivedData;
-import io.schnellert.websocket.data.exception.WebSocketException;
+import io.schnellert.websocket.data.WebSocketException;
 import io.schnellert.websocket.data.exception.WebSocketSyntaxException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -48,7 +48,7 @@ public final class WebSocketHandlerImpl implements IWebSocketHandler {
         
         Objects.requireNonNull(uri, "URI cannot be null");
         
-        if (!(uri.getHost().contains("ws://"))) {
+        if (!(uri.getHost().startsWith("ws://"))) {
             throw new WebSocketSyntaxException("URI does not start with ws://");
         }
         
