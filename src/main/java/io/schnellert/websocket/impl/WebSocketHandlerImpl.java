@@ -60,7 +60,7 @@ public final class WebSocketHandlerImpl implements IWebSocketHandler {
     
     //<editor-fold defaultstate="collapsed" desc="WebSocketHandlerImpl">
     public WebSocketHandlerImpl(@NonNull final String endpoint)
-            throws Exception{
+            throws Exception {
         
         this(new URI(endpoint));
     }
