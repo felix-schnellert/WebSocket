@@ -5,12 +5,6 @@ import io.schnellert.websocket.factory.IWebSocketHandlerFactory;
 import io.schnellert.websocket.factory.impl.WebSocketHandlerFactoryImpl;
 
 
-/**
- * @author Felix Schnellert
- *
- * Copyright (c) 2022 by Schnellert-IT to present. All rights reserved
- */
-
 public final class Main {
 
     public static void main(String[] args) {
